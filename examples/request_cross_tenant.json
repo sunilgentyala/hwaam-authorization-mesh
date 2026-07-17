@@ -1,64 +1,85 @@
 {
-  "request_id": "req-demo-cross-tenant",
-  "principal": {
-    "principal_id": "user:suresh",
-    "principal_type": "human",
-    "tenant_id": "tenant-a",
-    "roles": [
-      "storage_operator"
-    ],
-    "attributes": {
-      "device_compliant": true,
-      "mfa": true
-    }
-  },
   "action": "snapshot.create",
-  "resource": {
-    "resource_id": "volume:prod-db-01",
-    "resource_type": "storage_volume",
-    "tenant_id": "tenant-b",
-    "attributes": {
-      "environment": "production"
-    }
+  "approvals": [],
+  "context": {
+    "output_destination": "internal-audit",
+    "requested_changes": 1
   },
+  "delegation_chain": [
+    {
+      "algorithm": "HMAC-SHA256",
+      "payload": {
+        "allowed_actions": [
+          "snapshot.create"
+        ],
+        "audience": "hwaam-engine",
+        "delegation_id": "delegation-demo-001",
+        "expires_at": "2099-12-31T23:59:59+00:00",
+        "issued_at": "2026-01-01T00:00:00+00:00",
+        "issuer": "user:suresh",
+        "nonce": "demo-delegation-nonce-1",
+        "parent_delegation_id": null,
+        "principal_type": "ai_agent",
+        "resource_patterns": [
+          "volume:prod-db-*"
+        ],
+        "subject": "agent:change-assistant",
+        "tenant_id": "tenant-a"
+      },
+      "signature": "e690954281e01c30d4efc259a7b59fed248ab588961300a263ce3c7e27e78377"
+    }
+  ],
   "mission": {
-    "mission_id": "mission-demo-001",
-    "tenant_id": "tenant-a",
-    "purpose": "Create one protection snapshot for the production database",
     "allowed_actions": [
       "snapshot.create"
+    ],
+    "allowed_output_destinations": [
+      "internal-audit"
     ],
     "denied_actions": [
       "volume.delete"
     ],
+    "expires_at": "2099-12-31T23:59:59+00:00",
+    "max_changes": 1,
+    "max_delegation_depth": 1,
+    "mission_id": "mission-demo-001",
+    "purpose": "Create one protection snapshot for the production database",
+    "required_approvals": 0,
     "resource_patterns": [
       "volume:prod-db-*"
     ],
-    "expires_at": "2099-12-31T23:59:59+00:00",
-    "max_delegation_depth": 1,
-    "max_changes": 1,
-    "required_approvals": 0,
-    "allowed_output_destinations": [
-      "internal-audit"
-    ]
+    "tenant_id": "tenant-a"
   },
-  "delegation_chain": [
-    {
-      "principal_id": "agent:change-assistant",
-      "principal_type": "ai_agent",
-      "allowed_actions": [
-        "snapshot.create"
-      ],
-      "resource_patterns": [
-        "volume:prod-db-*"
-      ],
-      "tenant_id": "tenant-a"
-    }
-  ],
-  "context": {
-    "risk_score": 20,
-    "requested_changes": 1,
-    "output_destination": "internal-audit"
+  "principal": {
+    "attributes": {},
+    "principal_id": "user:suresh",
+    "principal_type": "human",
+    "roles": [
+      "storage_operator"
+    ],
+    "tenant_id": "tenant-a"
   },
-  "approvals": []
+  "request_id": "req-demo-cross-tenant",
+  "resource": {
+    "attributes": {
+      "environment": "production"
+    },
+    "resource_id": "volume:prod-db-01",
+    "resource_type": "storage_volume",
+    "tenant_id": "tenant-b"
+  },
+  "security_context": {
+    "algorithm": "HMAC-SHA256",
+    "payload": {
+      "device_compliant": true,
+      "expires_at": "2099-12-31T23:59:59+00:00",
+      "issued_at": "2026-01-01T00:00:00+00:00",
+      "issuer": "identity-provider",
+      "mfa": true,
+      "nonce": "demo-context-nonce-cross-tenant",
+      "risk_score": 20,
+      "subject_id": "user:suresh"
+    },
+    "signature": "c756e2135853b1a1fb91e94824818c19bec1e59c51dadf21b69e5ae7d69d8e52"
+  }
 }

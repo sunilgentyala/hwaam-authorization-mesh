@@ -5,6 +5,10 @@ on:
     branches: ["main"]
     paths:
       - "docs/**"
+      - "src/**"
+      - "tests/**"
+      - "scripts/**"
+      - "research/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -26,10 +30,21 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install package
+        run: python -m pip install -e .
+      - name: Regenerate live test and benchmark results
+        run: |
+          python scripts/run_tests.py
+          python scripts/benchmark.py --iterations 5000
+          python scripts/generate_results.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: docs
       - name: Deploy

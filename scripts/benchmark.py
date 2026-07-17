@@ -53,14 +53,28 @@ def main() -> int:
         raise SystemExit("iterations must be at least 100")
 
     engine, request = build_engine_and_request()
+    # Must match the secret request_allowed.json's envelopes were signed with
+    # (see scripts/sign_examples.py) or every decision will deny.
+    issuer_secret = "demo-issuer-secret"
+    trusted_issuers = ("identity-provider", "user:suresh")
     for _ in range(100):
-        engine.evaluate(request, "benchmark-secret")
+        engine.evaluate(
+            request,
+            "benchmark-secret",
+            issuer_secret=issuer_secret,
+            trusted_issuers=trusted_issuers,
+        )
 
     timings_ms: list[float] = []
     started = time.perf_counter()
     for _ in range(args.iterations):
         one_started = time.perf_counter()
-        decision, _ = engine.evaluate(request, "benchmark-secret")
+        decision, _ = engine.evaluate(
+            request,
+            "benchmark-secret",
+            issuer_secret=issuer_secret,
+            trusted_issuers=trusted_issuers,
+        )
         timings_ms.append((time.perf_counter() - one_started) * 1000)
         if decision.effect != "allow":
             raise RuntimeError("Benchmark request did not remain allowed")

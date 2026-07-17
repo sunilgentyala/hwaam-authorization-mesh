@@ -65,27 +65,6 @@ class Resource:
 
 
 @dataclass(frozen=True)
-class DelegationHop:
-    """One step in an end-to-end delegation chain."""
-
-    principal_id: str
-    principal_type: str
-    allowed_actions: tuple[str, ...]
-    resource_patterns: tuple[str, ...]
-    tenant_id: str
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "DelegationHop":
-        return cls(
-            principal_id=str(data["principal_id"]),
-            principal_type=str(data["principal_type"]),
-            allowed_actions=tuple(str(item) for item in data.get("allowed_actions", [])),
-            resource_patterns=tuple(str(item) for item in data.get("resource_patterns", [])),
-            tenant_id=str(data["tenant_id"]),
-        )
-
-
-@dataclass(frozen=True)
 class MissionEnvelope:
     """A bounded purpose and impact contract for delegated work."""
 
@@ -122,16 +101,25 @@ class MissionEnvelope:
 
 @dataclass(frozen=True)
 class AuthorizationRequest:
-    """A normalized authorization request."""
+    """A normalized authorization request.
+
+    ``delegation_chain`` and ``approvals`` carry signed envelopes (issued by a
+    delegator or an approval system, not the requester) and ``security_context``
+    carries a signed envelope from a trusted identity/device/risk system. None
+    of the three are parsed into trusted objects here — that requires a shared
+    secret, which only the engine has, so verification happens in
+    ``AuthorizationEngine.evaluate``.
+    """
 
     request_id: str
     principal: Principal
     action: str
     resource: Resource
     mission: MissionEnvelope
-    delegation_chain: tuple[DelegationHop, ...] = ()
+    delegation_chain: tuple[dict[str, Any], ...] = ()
     context: dict[str, Any] = field(default_factory=dict)
-    approvals: tuple[str, ...] = ()
+    approvals: tuple[dict[str, Any], ...] = ()
+    security_context: dict[str, Any] | None = None
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "AuthorizationRequest":
@@ -142,11 +130,15 @@ class AuthorizationRequest:
             resource=Resource.from_dict(data["resource"]),
             mission=MissionEnvelope.from_dict(data["mission"]),
             delegation_chain=tuple(
-                DelegationHop.from_dict(item)
-                for item in data.get("delegation_chain", [])
+                dict(item) for item in data.get("delegation_chain", [])
             ),
             context=dict(data.get("context", {})),
-            approvals=tuple(str(item) for item in data.get("approvals", [])),
+            approvals=tuple(dict(item) for item in data.get("approvals", [])),
+            security_context=(
+                dict(data["security_context"])
+                if data.get("security_context") is not None
+                else None
+            ),
         )
 
 

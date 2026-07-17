@@ -16,6 +16,7 @@ class ActionRequirement:
     required_attributes: dict[str, Any] = field(default_factory=dict)
     required_relationship: str | None = None
     minimum_approvals: int = 0
+    approver_roles: tuple[str, ...] = ()
     maximum_risk: int = 100
     obligations: tuple[str, ...] = ()
 
@@ -33,8 +34,35 @@ class ActionRequirement:
                 else None
             ),
             minimum_approvals=int(data.get("minimum_approvals", 0)),
+            approver_roles=tuple(str(item) for item in data.get("approver_roles", [])),
             maximum_risk=maximum_risk,
             obligations=tuple(str(item) for item in data.get("obligations", [])),
+        )
+
+
+@dataclass(frozen=True)
+class TenantTrustPolicy:
+    """An explicit, narrowly-scoped grant of cross-tenant access.
+
+    Cross-tenant access is never enabled by a global switch. Each entry names
+    the exact source tenant, destination tenant, resource pattern, required
+    relationship, and action it authorizes.
+    """
+
+    source_tenant_id: str
+    destination_tenant_id: str
+    resource_pattern: str
+    relationship: str
+    action: str
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "TenantTrustPolicy":
+        return cls(
+            source_tenant_id=str(data["source_tenant_id"]),
+            destination_tenant_id=str(data["destination_tenant_id"]),
+            resource_pattern=str(data["resource_pattern"]),
+            relationship=str(data["relationship"]),
+            action=str(data["action"]),
         )
 
 
@@ -46,7 +74,7 @@ class PolicyBundle:
     default_effect: str
     role_permissions: dict[str, tuple[str, ...]]
     action_requirements: dict[str, ActionRequirement]
-    allow_cross_tenant: bool = False
+    cross_tenant_trust: tuple[TenantTrustPolicy, ...] = ()
     decision_ttl_seconds: int = 60
 
     @classmethod
@@ -67,12 +95,16 @@ class PolicyBundle:
             str(action): ActionRequirement.from_dict(requirement)
             for action, requirement in data.get("action_requirements", {}).items()
         }
+        cross_tenant_trust = tuple(
+            TenantTrustPolicy.from_dict(item)
+            for item in data.get("cross_tenant_trust", [])
+        )
         return cls(
             version=str(data["version"]),
             default_effect=default_effect,
             role_permissions=role_permissions,
             action_requirements=action_requirements,
-            allow_cross_tenant=bool(data.get("allow_cross_tenant", False)),
+            cross_tenant_trust=cross_tenant_trust,
             decision_ttl_seconds=ttl,
         )
 

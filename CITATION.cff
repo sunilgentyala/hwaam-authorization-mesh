@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use HWAAM, cite this software and the associated research paper."
 title: "HWAAM Authorization Mesh"
 type: software
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-07-16
 authors:
   - family-names: Gentyala

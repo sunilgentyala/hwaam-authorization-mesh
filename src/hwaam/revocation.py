@@ -12,6 +12,7 @@ class RevocationRegistry:
     revoked_principals: set[str] = field(default_factory=set)
     revoked_missions: set[str] = field(default_factory=set)
     revoked_resources: set[str] = field(default_factory=set)
+    revoked_delegations: set[str] = field(default_factory=set)
 
     def revoke_principal(self, principal_id: str) -> None:
         self.revoked_principals.add(principal_id)
@@ -22,6 +23,9 @@ class RevocationRegistry:
     def revoke_resource(self, resource_id: str) -> None:
         self.revoked_resources.add(resource_id)
 
+    def revoke_delegation(self, delegation_id: str) -> None:
+        self.revoked_delegations.add(delegation_id)
+
     def is_principal_revoked(self, principal_id: str) -> bool:
         return principal_id in self.revoked_principals
 
@@ -30,3 +34,6 @@ class RevocationRegistry:
 
     def is_resource_revoked(self, resource_id: str) -> bool:
         return resource_id in self.revoked_resources
+
+    def is_delegation_revoked(self, delegation_id: str) -> bool:
+        return delegation_id in self.revoked_delegations

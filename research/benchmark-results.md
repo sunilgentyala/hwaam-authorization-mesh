@@ -1,18 +1,18 @@
 # Benchmark Results
 
-Generated: `2026-07-16T23:51:24.289370+00:00`
+Generated: `2026-07-17T04:28:46.362970+00:00`
 
 ## Local result
 
-- Iterations: **20,000**
-- Decisions per second: **45,838.91**
-- Mean latency: **0.0215 ms**
-- Median latency: **0.0210 ms**
-- P95 latency: **0.0239 ms**
-- P99 latency: **0.0350 ms**
-- Maximum latency: **0.2200 ms**
-- Python: `3.13.5`
-- Platform: `Linux-4.4.0-x86_64-with-glibc2.41`
+- Iterations: **2,000**
+- Decisions per second: **27,476.19**
+- Mean latency: **0.0361 ms**
+- Median latency: **0.0344 ms**
+- P95 latency: **0.0381 ms**
+- P99 latency: **0.0682 ms**
+- Maximum latency: **0.3571 ms**
+- Python: `3.14.4`
+- Platform: `Windows-11-10.0.26200-SP0`
 
 ## Scope and limitation
 

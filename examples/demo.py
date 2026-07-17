@@ -31,7 +31,12 @@ def run(filename: str) -> None:
     engine = build_engine()
     data = load_json(ROOT / "examples" / filename)
     request = AuthorizationRequest.from_dict(data)
-    decision, _ = engine.evaluate(request, "demo-secret")
+    decision, _ = engine.evaluate(
+        request,
+        "demo-secret",
+        issuer_secret="demo-issuer-secret",
+        trusted_issuers=("identity-provider", "user:suresh"),
+    )
     print(filename)
     print(json.dumps(decision.to_dict(), indent=2))
     print()

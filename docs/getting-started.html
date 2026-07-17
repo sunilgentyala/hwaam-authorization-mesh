@@ -22,7 +22,10 @@ python -m pip install -e .</pre>
   <pre>hwaam evaluate \
   --policy examples/policy.json \
   --request examples/request_allowed.json \
-  --secret demo-secret</pre>
+  --secret demo-secret \
+  --issuer-secret demo-issuer-secret \
+  --trusted-issuers identity-provider,user:suresh</pre>
+  <p><code>--secret</code> signs the engine's own receipt. <code>--issuer-secret</code> verifies the signed security context, approvals, and delegation hops attached to the request &mdash; the engine never trusts those fields unsigned. Prefer <code>--secret-file</code>/<code>--secret-env</code>/<code>--secret-stdin</code> (and the matching <code>--issuer-secret-*</code> forms) over the bare flag outside of local testing.</p>
   <h2>Run tests</h2>
   <pre>python scripts/run_tests.py</pre>
   <h2>Run benchmark</h2>
@@ -32,8 +35,10 @@ python scripts/generate_results.py</pre>
   <pre>hwaam evaluate \
   --policy examples/policy.json \
   --request examples/request_cross_tenant.json \
-  --secret demo-secret</pre>
-  <p>The denied command exits with status code 2 so CI pipelines can distinguish enforcement failures from execution errors.</p>
+  --secret demo-secret \
+  --issuer-secret demo-issuer-secret \
+  --trusted-issuers identity-provider,user:suresh</pre>
+  <p>Exit codes reflect the decision: <code>0</code> allow, <code>4</code> conditional allow (obligations still outstanding), <code>2</code> deny, <code>1</code> execution error &mdash; so a caller can't mistake a conditional allow for a clean pass, and CI pipelines can distinguish enforcement failures from execution errors.</p>
 </main>
 <footer>HWAAM reference implementation</footer>
 </body>

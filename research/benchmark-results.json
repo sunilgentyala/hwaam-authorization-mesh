@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-07-16T23:51:24.289370+00:00",
-  "python": "3.13.5",
-  "platform": "Linux-4.4.0-x86_64-with-glibc2.41",
-  "processor": "not reported",
-  "iterations": 20000,
-  "elapsed_seconds": 0.4363105299999006,
-  "decisions_per_second": 45838.91202443488,
+  "generated_at": "2026-07-17T04:28:46.362970+00:00",
+  "python": "3.14.4",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "AMD64 Family 26 Model 96 Stepping 0, AuthenticAMD",
+  "iterations": 2000,
+  "elapsed_seconds": 0.07279030000790954,
+  "decisions_per_second": 27476.188445200474,
   "latency_ms": {
-    "mean": 0.021548106598947923,
-    "median": 0.02098099957947852,
-    "p95": 0.023896000129752792,
-    "p99": 0.03496200042718556,
-    "maximum": 0.21996000032231677
+    "mean": 0.03611905027355533,
+    "median": 0.03440000000409782,
+    "p95": 0.03809999907389283,
+    "p99": 0.06820002454333007,
+    "maximum": 0.35710001247934997
   },
   "scope": "In-process Python reference engine with in-memory policy, relationship, and revocation data. Results are not production claims."
 }

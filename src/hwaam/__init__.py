@@ -3,17 +3,18 @@
 from .engine import AuthorizationEngine
 from .models import (
     Decision,
-    DelegationHop,
     MissionEnvelope,
     Principal,
     Resource,
     AuthorizationRequest,
 )
-from .policy import PolicyBundle
+from .policy import PolicyBundle, TenantTrustPolicy
 from .relationships import RelationshipGraph
 from .revocation import RevocationRegistry
+from .trust import Approval, DelegationHop, SecurityContext
 
 __all__ = [
+    "Approval",
     "AuthorizationEngine",
     "AuthorizationRequest",
     "Decision",
@@ -24,6 +25,8 @@ __all__ = [
     "RelationshipGraph",
     "Resource",
     "RevocationRegistry",
+    "SecurityContext",
+    "TenantTrustPolicy",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
