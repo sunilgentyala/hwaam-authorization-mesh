@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-07-16T23:51:24.289370+00:00",
+  "python": "3.13.5",
+  "platform": "Linux-4.4.0-x86_64-with-glibc2.41",
+  "processor": "not reported",
+  "iterations": 20000,
+  "elapsed_seconds": 0.4363105299999006,
+  "decisions_per_second": 45838.91202443488,
+  "latency_ms": {
+    "mean": 0.021548106598947923,
+    "median": 0.02098099957947852,
+    "p95": 0.023896000129752792,
+    "p99": 0.03496200042718556,
+    "maximum": 0.21996000032231677
+  },
+  "scope": "In-process Python reference engine with in-memory policy, relationship, and revocation data. Results are not production claims."
+}

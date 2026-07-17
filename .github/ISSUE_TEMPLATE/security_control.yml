@@ -1,0 +1,26 @@
+name: Security control proposal
+description: Propose a new authorization control, invariant, or test
+title: "[Control] "
+labels: ["enhancement", "security"]
+body:
+  - type: textarea
+    id: gap
+    attributes:
+      label: Authorization gap
+      description: What threat or failure does the control address?
+    validations:
+      required: true
+  - type: textarea
+    id: control
+    attributes:
+      label: Proposed control
+      description: Describe deterministic inputs, decision behavior, and failure mode.
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Required tests
+      description: List positive, negative, cross-tenant, revocation, and misuse cases.
+    validations:
+      required: true

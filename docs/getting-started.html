@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Get Started | HWAAM</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">HWAAM</a>
+  <nav><a href="architecture.html">Architecture</a><a href="impact.html">Impact</a><a href="test-results.html">Results</a></nav>
+</header>
+<main class="container">
+  <p class="eyebrow">Get started</p>
+  <h1>Run an authorization decision locally.</h1>
+  <h2>Install</h2>
+  <pre>git clone https://github.com/sunilgentyala/hwaam-authorization-mesh.git
+cd hwaam-authorization-mesh
+python -m pip install -e .</pre>
+  <h2>Evaluate</h2>
+  <pre>hwaam evaluate \
+  --policy examples/policy.json \
+  --request examples/request_allowed.json \
+  --secret demo-secret</pre>
+  <h2>Run tests</h2>
+  <pre>python scripts/run_tests.py</pre>
+  <h2>Run benchmark</h2>
+  <pre>python scripts/benchmark.py --iterations 20000
+python scripts/generate_results.py</pre>
+  <h2>Try denial cases</h2>
+  <pre>hwaam evaluate \
+  --policy examples/policy.json \
+  --request examples/request_cross_tenant.json \
+  --secret demo-secret</pre>
+  <p>The denied command exits with status code 2 so CI pipelines can distinguish enforcement failures from execution errors.</p>
+</main>
+<footer>HWAAM reference implementation</footer>
+</body>
+</html>

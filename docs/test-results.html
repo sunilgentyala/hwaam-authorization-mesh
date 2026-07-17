@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HWAAM Test Results</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header"><a href="index.html">HWAAM</a></header>
+<main class="container">
+  <h1>Test and benchmark results</h1>
+  <section class="metric-grid">
+    <article><strong>22</strong><span>tests executed</span></article>
+    <article><strong>PASSED</strong><span>test status</span></article>
+    <article><strong>45,839</strong><span>decisions per second</span></article>
+    <article><strong>0.0239 ms</strong><span>P95 local latency</span></article>
+  </section>
+  <p class="notice">These measurements describe one local, in-process run. They are not production performance claims.</p>
+  <h2>Test output</h2>
+  <pre>test_allows_valid_mission_bounded_request (tests.test_engine.EngineTests.test_allows_valid_mission_bounded_request) ... ok
+test_conditional_allow_for_high_risk (tests.test_engine.EngineTests.test_conditional_allow_for_high_risk) ... ok
+test_denies_action_outside_mission (tests.test_engine.EngineTests.test_denies_action_outside_mission) ... ok
+test_denies_missing_relationship (tests.test_engine.EngineTests.test_denies_missing_relationship) ... ok
+test_denies_resource_outside_mission (tests.test_engine.EngineTests.test_denies_resource_outside_mission) ... ok
+test_denies_excessive_change_count (tests.test_mission.MissionTests.test_denies_excessive_change_count) ... ok
+test_denies_expired_mission (tests.test_mission.MissionTests.test_denies_expired_mission) ... ok
+test_denies_unapproved_output_destination (tests.test_mission.MissionTests.test_denies_unapproved_output_destination) ... ok
+test_rejects_allow_by_default (tests.test_policy_validation.PolicyValidationTests.test_rejects_allow_by_default) ... ok
+test_rejects_invalid_risk_limit (tests.test_policy_validation.PolicyValidationTests.test_rejects_invalid_risk_limit) ... ok
+test_rejects_invalid_ttl (tests.test_policy_validation.PolicyValidationTests.test_rejects_invalid_ttl) ... ok
+test_privileged_action_has_session_obligation (tests.test_privileged_action.PrivilegedActionTests.test_privileged_action_has_session_obligation) ... ok
+test_requires_two_approvals (tests.test_privileged_action.PrivilegedActionTests.test_requires_two_approvals) ... ok
+test_tampered_receipt_fails (tests.test_receipts.ReceiptTests.test_tampered_receipt_fails) ... ok
+test_valid_receipt_verifies (tests.test_receipts.ReceiptTests.test_valid_receipt_verifies) ... ok
+test_wrong_secret_fails (tests.test_receipts.ReceiptTests.test_wrong_secret_fails) ... ok
+test_denies_revoked_mission (tests.test_revocation.RevocationTests.test_denies_revoked_mission) ... ok
+test_denies_revoked_principal (tests.test_revocation.RevocationTests.test_denies_revoked_principal) ... ok
+test_denies_revoked_resource (tests.test_revocation.RevocationTests.test_denies_revoked_resource) ... ok
+test_denies_cross_tenant_resource (tests.test_tenant_and_delegation.TenantAndDelegationTests.test_denies_cross_tenant_resource) ... ok
+test_denies_delegation_action_expansion (tests.test_tenant_and_delegation.TenantAndDelegationTests.test_denies_delegation_action_expansion) ... ok
+test_denies_excessive_delegation_depth (tests.test_tenant_and_delegation.TenantAndDelegationTests.test_denies_excessive_delegation_depth) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.004s
+
+OK</pre>
+  <h2>Benchmark environment</h2>
+  <pre>{
+  &quot;generated_at&quot;: &quot;2026-07-16T23:51:24.289370+00:00&quot;,
+  &quot;python&quot;: &quot;3.13.5&quot;,
+  &quot;platform&quot;: &quot;Linux-4.4.0-x86_64-with-glibc2.41&quot;,
+  &quot;processor&quot;: &quot;not reported&quot;,
+  &quot;iterations&quot;: 20000,
+  &quot;elapsed_seconds&quot;: 0.4363105299999006,
+  &quot;decisions_per_second&quot;: 45838.91202443488,
+  &quot;latency_ms&quot;: {
+    &quot;mean&quot;: 0.021548106598947923,
+    &quot;median&quot;: 0.02098099957947852,
+    &quot;p95&quot;: 0.023896000129752792,
+    &quot;p99&quot;: 0.03496200042718556,
+    &quot;maximum&quot;: 0.21996000032231677
+  },
+  &quot;scope&quot;: &quot;In-process Python reference engine with in-memory policy, relationship, and revocation data. Results are not production claims.&quot;
+}</pre>
+</main>
+<footer>HWAAM reference implementation</footer>
+</body>
+</html>

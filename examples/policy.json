@@ -1,0 +1,76 @@
+{
+  "version": "2026.07.16-demo",
+  "default_effect": "deny",
+  "decision_ttl_seconds": 60,
+  "allow_cross_tenant": false,
+  "role_permissions": {
+    "storage_operator": [
+      "volume.read",
+      "snapshot.create"
+    ],
+    "storage_admin": [
+      "volume.read",
+      "snapshot.create",
+      "volume.delete"
+    ],
+    "auditor": [
+      "volume.read"
+    ]
+  },
+  "action_requirements": {
+    "volume.read": {
+      "required_roles": [
+        "storage_operator",
+        "storage_admin",
+        "auditor"
+      ],
+      "required_attributes": {
+        "device_compliant": true
+      },
+      "required_relationship": "can_read",
+      "minimum_approvals": 0,
+      "maximum_risk": 80
+    },
+    "snapshot.create": {
+      "required_roles": [
+        "storage_operator",
+        "storage_admin"
+      ],
+      "required_attributes": {
+        "device_compliant": true
+      },
+      "required_relationship": "manages",
+      "minimum_approvals": 0,
+      "maximum_risk": 70
+    },
+    "volume.delete": {
+      "required_roles": [
+        "storage_admin"
+      ],
+      "required_attributes": {
+        "device_compliant": true,
+        "mfa": true
+      },
+      "required_relationship": "manages",
+      "minimum_approvals": 2,
+      "maximum_risk": 30,
+      "obligations": [
+        "record_privileged_session"
+      ]
+    }
+  },
+  "relationships": [
+    {
+      "subject_id": "user:suresh",
+      "relation": "manages",
+      "resource_id": "volume:prod-db-01",
+      "tenant_id": "tenant-a"
+    },
+    {
+      "subject_id": "user:suresh",
+      "relation": "can_read",
+      "resource_id": "volume:prod-db-01",
+      "tenant_id": "tenant-a"
+    }
+  ]
+}

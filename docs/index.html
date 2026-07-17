@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="HWAAM, a mission-bounded authorization mesh for humans, workloads, and AI agents.">
+  <title>HWAAM Authorization Mesh</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">HWAAM</a>
+  <nav>
+    <a href="architecture.html">Architecture</a>
+    <a href="getting-started.html">Get started</a>
+    <a href="impact.html">Impact</a>
+    <a href="test-results.html">Results</a>
+    <a href="https://github.com/sunilgentyala/hwaam-authorization-mesh">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Human-Workload-Agent Authorization Mesh</p>
+      <h1>Authorize the exact action, not only the identity.</h1>
+      <p class="lead">HWAAM combines roles, attributes, relationships, mission limits, delegation controls, revocation, and signed evidence for human, workload, and AI-agent access.</p>
+      <div class="actions">
+        <a class="button primary" href="getting-started.html">Run the engine</a>
+        <a class="button" href="architecture.html">View architecture</a>
+      </div>
+    </div>
+    <div class="decision-card">
+      <span class="status">ALLOW</span>
+      <dl>
+        <dt>Principal</dt><dd>user:suresh</dd>
+        <dt>Agent</dt><dd>change-assistant</dd>
+        <dt>Action</dt><dd>snapshot.create</dd>
+        <dt>Resource</dt><dd>volume:prod-db-01</dd>
+        <dt>Mission</dt><dd>one protection snapshot</dd>
+        <dt>Evidence</dt><dd>signed receipt</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>What HWAAM enforces</h2>
+    <div class="card-grid">
+      <article><h3>Tenant closure</h3><p>Principal, mission, resource, and relationship paths stay inside the authorized tenant.</p></article>
+      <article><h3>Mission containment</h3><p>Actions, resources, impact, expiry, approvals, outputs, and delegation remain bounded by purpose.</p></article>
+      <article><h3>Authority attenuation</h3><p>Every delegation hop can preserve or reduce authority, but it cannot expand it.</p></article>
+      <article><h3>Continuous revocation</h3><p>Principal, mission, and resource revocation are checked before role evaluation.</p></article>
+      <article><h3>Deterministic decisions</h3><p>Protected actions default to deny when required policy or facts are unavailable.</p></article>
+      <article><h3>Verifiable evidence</h3><p>Each decision can produce a signed receipt containing the policy and delegation context.</p></article>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Designed for current systems</p>
+        <h2>Use existing identity and policy investments.</h2>
+        <p>HWAAM is not a replacement for RBAC, ABAC, ReBAC, OAuth, Zero Trust, or privileged access. It composes them around one resource-specific decision.</p>
+      </div>
+      <ul class="check-list">
+        <li>API and object authorization</li>
+        <li>Cloud and Kubernetes workloads</li>
+        <li>Service accounts and automation</li>
+        <li>AI-agent tool gateways</li>
+        <li>Storage and infrastructure operations</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container authors">
+    <h2>Project authors</h2>
+    <p><strong>Sunil Gentyala</strong>, primary author and project lead</p>
+    <p><strong>Suresh Kumar Darisi</strong>, co-author and framework contributor</p>
+  </section>
+</main>
+
+<footer>Apache-2.0 licensed HWAAM reference implementation</footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{
+  "request_id": "req-demo-high-risk",
+  "principal": {
+    "principal_id": "user:suresh",
+    "principal_type": "human",
+    "tenant_id": "tenant-a",
+    "roles": [
+      "storage_operator"
+    ],
+    "attributes": {
+      "device_compliant": true,
+      "mfa": true
+    }
+  },
+  "action": "snapshot.create",
+  "resource": {
+    "resource_id": "volume:prod-db-01",
+    "resource_type": "storage_volume",
+    "tenant_id": "tenant-a",
+    "attributes": {
+      "environment": "production"
+    }
+  },
+  "mission": {
+    "mission_id": "mission-demo-001",
+    "tenant_id": "tenant-a",
+    "purpose": "Create one protection snapshot for the production database",
+    "allowed_actions": [
+      "snapshot.create"
+    ],
+    "denied_actions": [
+      "volume.delete"
+    ],
+    "resource_patterns": [
+      "volume:prod-db-*"
+    ],
+    "expires_at": "2099-12-31T23:59:59+00:00",
+    "max_delegation_depth": 1,
+    "max_changes": 1,
+    "required_approvals": 0,
+    "allowed_output_destinations": [
+      "internal-audit"
+    ]
+  },
+  "delegation_chain": [
+    {
+      "principal_id": "agent:change-assistant",
+      "principal_type": "ai_agent",
+      "allowed_actions": [
+        "snapshot.create"
+      ],
+      "resource_patterns": [
+        "volume:prod-db-*"
+      ],
+      "tenant_id": "tenant-a"
+    }
+  ],
+  "context": {
+    "risk_score": 90,
+    "requested_changes": 1,
+    "output_destination": "internal-audit"
+  },
+  "approvals": []
+}

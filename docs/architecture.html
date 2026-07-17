@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Architecture | HWAAM</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">HWAAM</a>
+  <nav><a href="getting-started.html">Get started</a><a href="impact.html">Impact</a><a href="test-results.html">Results</a></nav>
+</header>
+<main class="container">
+  <p class="eyebrow">Architecture</p>
+  <h1>A shared decision model with distributed enforcement.</h1>
+  <img class="architecture" src="assets/architecture.svg" alt="HWAAM architecture showing principals, enforcement points, policy evaluation, revocation, and signed evidence.">
+  <h2>Decision inputs</h2>
+  <div class="card-grid">
+    <article><h3>Principal chain</h3><p>Human, workload, agent, sub-agent, and tool identities remain distinct.</p></article>
+    <article><h3>Resource</h3><p>Authorization is bound to an object, type, owner tenant, and resource attributes.</p></article>
+    <article><h3>Mission envelope</h3><p>Purpose is converted into concrete action, resource, impact, time, output, and delegation limits.</p></article>
+    <article><h3>Policy bundle</h3><p>Roles, attributes, relationships, approvals, risk limits, and obligations are versioned.</p></article>
+  </div>
+  <h2>Decision outcomes</h2>
+  <p>HWAAM returns <code>allow</code>, <code>deny</code>, or <code>conditional_allow</code>. Conditional decisions contain obligations such as approval, step-up authentication, session recording, or restricted output.</p>
+  <h2>Security invariants</h2>
+  <ol>
+    <li>Delegation cannot expand effective authority.</li>
+    <li>Tenant boundaries remain closed unless explicitly reviewed.</li>
+    <li>Every action remains inside the mission.</li>
+    <li>Delegation depth is bounded.</li>
+    <li>Protected operations use an approved enforcement point.</li>
+    <li>Revocation freshness is bounded.</li>
+    <li>Sensitive decisions produce complete evidence.</li>
+    <li>Missing security facts cause denial.</li>
+  </ol>
+</main>
+<footer>HWAAM reference implementation</footer>
+</body>
+</html>

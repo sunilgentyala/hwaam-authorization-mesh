@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">HWAAM architecture</title>
+  <desc id="desc">Human, workload, and agent principals send requests through enforcement points to policy, mission, relationship, revocation, and evidence services.</desc>
+  <defs>
+    <style>
+      .box{fill:#ffffff;stroke:#173552;stroke-width:3;rx:18}
+      .core{fill:#dff8ef;stroke:#087f5b;stroke-width:4;rx:22}
+      .text{font-family:Arial,sans-serif;fill:#10253a;font-size:24px;font-weight:700}
+      .small{font-family:Arial,sans-serif;fill:#40576d;font-size:18px}
+      .arrow{stroke:#315d83;stroke-width:5;fill:none;marker-end:url(#m)}
+    </style>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315d83"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#f6fbff"/>
+  <rect class="box" x="55" y="90" width="250" height="105"/>
+  <text class="text" x="180" y="135" text-anchor="middle">Human</text>
+  <text class="small" x="180" y="168" text-anchor="middle">User and approver</text>
+  <rect class="box" x="55" y="305" width="250" height="105"/>
+  <text class="text" x="180" y="350" text-anchor="middle">Workload</text>
+  <text class="small" x="180" y="383" text-anchor="middle">Service and pipeline</text>
+  <rect class="box" x="55" y="520" width="250" height="105"/>
+  <text class="text" x="180" y="565" text-anchor="middle">AI Agent</text>
+  <text class="small" x="180" y="598" text-anchor="middle">Agent and sub-agent</text>
+
+  <rect class="box" x="380" y="280" width="265" height="150"/>
+  <text class="text" x="512" y="330" text-anchor="middle">Enforcement Point</text>
+  <text class="small" x="512" y="367" text-anchor="middle">API, gateway, tool,</text>
+  <text class="small" x="512" y="395" text-anchor="middle">service, or storage adapter</text>
+
+  <rect class="core" x="720" y="245" width="415" height="220"/>
+  <text class="text" x="927" y="300" text-anchor="middle">HWAAM Decision Engine</text>
+  <text class="small" x="927" y="342" text-anchor="middle">Roles + attributes + relationships</text>
+  <text class="small" x="927" y="375" text-anchor="middle">Mission + delegation + risk</text>
+  <text class="small" x="927" y="408" text-anchor="middle">Revocation + obligations</text>
+
+  <rect class="box" x="715" y="55" width="185" height="100"/>
+  <text class="text" x="807" y="98" text-anchor="middle">Policy</text>
+  <text class="small" x="807" y="130" text-anchor="middle">Versioned rules</text>
+  <rect class="box" x="950" y="55" width="185" height="100"/>
+  <text class="text" x="1042" y="98" text-anchor="middle">Mission</text>
+  <text class="small" x="1042" y="130" text-anchor="middle">Purpose limits</text>
+  <rect class="box" x="715" y="555" width="185" height="100"/>
+  <text class="text" x="807" y="598" text-anchor="middle">Revocation</text>
+  <text class="small" x="807" y="630" text-anchor="middle">Current state</text>
+  <rect class="box" x="950" y="555" width="185" height="100"/>
+  <text class="text" x="1042" y="598" text-anchor="middle">Evidence</text>
+  <text class="small" x="1042" y="630" text-anchor="middle">Signed receipt</text>
+
+  <path class="arrow" d="M305 142 C340 142 340 315 380 335"/>
+  <path class="arrow" d="M305 357 L380 357"/>
+  <path class="arrow" d="M305 572 C340 572 340 398 380 378"/>
+  <path class="arrow" d="M645 355 L720 355"/>
+  <path class="arrow" d="M807 155 L840 245"/>
+  <path class="arrow" d="M1042 155 L1000 245"/>
+  <path class="arrow" d="M807 555 L840 465"/>
+  <path class="arrow" d="M1000 465 L1042 555"/>
+</svg>
