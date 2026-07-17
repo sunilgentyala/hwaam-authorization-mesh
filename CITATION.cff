@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use HWAAM, cite this software and the associated research paper."
+title: "HWAAM Authorization Mesh"
+type: software
+version: 0.1.0
+date-released: 2026-07-16
+authors:
+  - family-names: Gentyala
+    given-names: Sunil
+  - family-names: Darisi
+    given-names: Suresh Kumar
+repository-code: "https://github.com/sunilgentyala/hwaam-authorization-mesh"
+url: "https://sunilgentyala.github.io/hwaam-authorization-mesh/"
+license: Apache-2.0
+keywords:
+  - authorization
+  - access control
+  - AI agents
+  - delegation
+  - least privilege
+  - zero trust
