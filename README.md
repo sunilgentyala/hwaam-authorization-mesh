@@ -216,9 +216,21 @@ https://sunilgentyala.github.io/hwaam-authorization-mesh/
 
 Version 0.2.0 provides a testable reference engine and research artifact. See [ROADMAP.md](ROADMAP.md) for planned integrations with OPA, Cedar, OpenFGA, OAuth token exchange, Kubernetes admission controls, and agent tool gateways.
 
-## Citation
+## How to Cite
 
-Citation metadata is provided in [CITATION.cff](CITATION.cff).
+If you use HWAAM Authorization Mesh in your research, please cite the software:
+
+```bibtex
+@software{gentyala2026hwaam,
+  author    = {Gentyala, Sunil and Darisi, Suresh Kumar},
+  title     = {HWAAM Authorization Mesh},
+  year      = {2026},
+  version   = {0.2.0},
+  url       = {https://github.com/sunilgentyala/hwaam-authorization-mesh}
+}
+```
+
+Machine-readable metadata is in [`CITATION.cff`](CITATION.cff); GitHub shows it under "Cite this repository".
 
 ## License
 
